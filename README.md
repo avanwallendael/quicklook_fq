@@ -1,6 +1,8 @@
 # quicklook_fq
 Very fast distance estimation for fastqs
 
+*This code is still under development*
+
 The goal of quicklook_fq is to provide a very fast and dependency-free tool for estimating genetic distance from genomic data. It is intended as a first-pass step in a large population genomics project to see patterns and catch errors in data. However, it is flexible enough to be useful for anything that uses a **fastq input** and a **distance matrix output**. 
 
 The program is a simple wrapper for the mash program (https://github.com/marbl/mash; Ondov et al. 2016), with an optional step for plotting in R. Mash uses the minhash algorithm to randomly sample genomic k-mers, then convert them into computational hashes for rapid comparison. It has some advantages and disadvantages over traditional alignment-based analyses (VanWallendael & Alvarez 2021). Advantages: extremely fast, avoids pitfalls of alignment (poor or missing reference, reference bias, polyploidy, repetition). Disadvantages: sensitive to sequencing depth, misses variation in sampling, sensitive to contamination.
