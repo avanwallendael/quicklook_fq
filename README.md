@@ -9,11 +9,14 @@ To run quicklook_fq, you should have a directory that includes both the mash exe
 
 **Installation**
 
-There is no true installation step, but you must download and modify ownership to run both. 
+There is no true installation step, but you must download and modify ownership to run the scripts. 
 
 #1. Download the mash and quicklook_fq executables  
 #Choose the appropriate .tar from https://github.com/marbl/Mash/releases  
 #download quicklook_fq.sh (or copy the code into a text file on your machine).
+
+curl https://raw.githubusercontent.com/avanwallendael/quicklook_fq/main/quicklook_fq_plot.R > quicklook_fq_plot.R
+curl https://raw.githubusercontent.com/avanwallendael/quicklook_fq/main/quicklook_fq.sh > quicklook_fq.sh
 
 #2. Unzip the mash .tar  
 tar -xf ~/Downloads/mash-OSX64-v2.3.tar  
