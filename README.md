@@ -40,13 +40,15 @@ You should have all of your fastqs (and only fastqs) in a folder in your working
 #5. Navigate to your fastq folder  
 cd fastqs
 
-#6. Run the script  
+#6. Run the script. You should expect this to take about 1.0-1.5m per Gb of your dataset.
 ../quicklook_fq.sh
 
 #7. Visualize your data  
 R --vanilla < quicklook_fastq_plot.R
 
 **Outputs**
+The script will first output basic info about your files, then proceed with mash. For each sample, mash will estimate genome size and coverage based on kmer depth.  
+
 The subdirectory /outs will contain several files. Those with a .msh extension are mash sketches of your data. The main output of the program is tbl1_quicklook.tab, a tsv file that indicates pairwise distances between samples. Columns 1 & 2 show filenames that are compared, column 3 is the genetic distance estimate (Jaccard distance), column 4 is the P-value, and column 5 the proportion of matching hashes between the pair.  
 
 The visualization generated is a PDF showing a principal coordinates analysis of your samples, labeled by file name. If you have a list of populations that corresponds to filenames, check the commented-out code in the script that will allow you to color points by population. 
