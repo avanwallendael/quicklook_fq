@@ -3,7 +3,7 @@ Very fast distance estimation for fastqs
 
 *This code is still under development*
 
-The goal of quicklook_fq is to provide a very fast and dependency-free tool for estimating genetic distance from genomic data. It is intended as a first-pass step in a large population genomics project to see patterns and catch errors in data. However, it is flexible enough to be useful for anything that uses a **fastq input** and a **distance matrix output**. 
+The goal of quicklook_fq is to provide a very fast and dependency-free tool for estimating genetic distance from genomic data. It is intended as a first-pass step in a large population genomics project to see patterns and catch errors in data. However, it is flexible enough to be useful for anything that uses a **fastq input** with the goal of creating a **distance matrix output**. 
 
 The program is a simple wrapper for the mash program (https://github.com/marbl/mash; Ondov et al. 2016), with an optional step for plotting in R. Mash uses the minhash algorithm to randomly sample genomic k-mers, then convert them into computational hashes for rapid comparison. It has some advantages and disadvantages over traditional alignment-based analyses (VanWallendael & Alvarez 2021). Advantages: extremely fast, avoids pitfalls of alignment (poor or missing reference, reference bias, polyploidy, repetition). Disadvantages: sensitive to sequencing depth, misses variation in sampling, sensitive to contamination.
 
@@ -46,5 +46,7 @@ cd fastqs
 #7. Visualize your data  
 R --vanilla < quicklook_fastq_plot.R
 
+**Outputs**
+The subdirectory /outs will contain several files. Those with a .msh extension are mash sketches of your data. The main output of the program is tbl1_quicklook.tab, a tsv file that indicates pairwise distances between samples. Columns 1 & 2 show filenames that are compared, column 3 is the genetic distance estimate (Jaccard distance), column 4 is the P-value, and column 5 the proportion of matching hashes between the pair.  
 
 The visualization generated is a PDF showing a principal coordinates analysis of your samples, labeled by file name. If you have a list of populations that corresponds to filenames, check the commented-out code in the script that will allow you to color points by population. 
