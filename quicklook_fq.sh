@@ -24,13 +24,21 @@ echo " "
 echo "If file sizes differ greatly (~10x or more), results may be biased. You should remove outlier files or trim them to the same size."
 echo " " 
 echo "Starting mash sketch"
+
 #####2. Sketch#####
 mkdir outs
-for sample in *q.gz; do ../mash sketch -m 2 -k 21 -s 10000 ${sample}; done
+#check type of unix system to count the number of available threads
+if [[ $(uname -s) == "Darwin" ]]; then
+  num_threads=$(sysctl -n hw.logicalcpu)
+else
+  num_threads=$(nproc)
+fi
+
+# Run the command in parallel using all but one thread
+find . -type f -name "*q.gz" | xargs -P $num_threads -I {} ../mash sketch -m 2 -k 21 -s 10000 {}
+
 mv *msh outs
 
 ls outs/*.msh > outs/list
 ../mash sketch -l outs/list
-
-echo "Starting mash distance estimation"
 ../mash dist outs/list.msh outs/list.msh > outs/tbl1_quicklook.tab
