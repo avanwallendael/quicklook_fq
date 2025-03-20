@@ -33,7 +33,7 @@ chmod 777 quicklook_fq.sh
 
 **Running quicklook_fq**
 
-You should have all of your fastqs (and only fastqs) in a folder in your working directory.
+You should have all of your fastqs (and only fastqs) in a folder in your working directory. If you have paired-end reads, only using R1 reads. ex. *mkdir R2s*, then *mv *R2*q.gz R2s*
 
 #5. Navigate to your fastq folder  
 cd fastqs
